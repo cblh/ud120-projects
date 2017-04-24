@@ -26,7 +26,12 @@ features_train, features_test, labels_train, labels_test = preprocess()
 
 #########################################################
 ### your code goes here ###
+from classify import NBAccuracy
+def submitAccuracy():
+    accuracy = NBAccuracy(features_train, labels_train, features_test, labels_test)
+    return accuracy
 
+print submitAccuracy()
 
 #########################################################
 
