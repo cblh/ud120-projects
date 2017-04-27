@@ -28,23 +28,22 @@ plt.show()
 ################################################################################
 
 
-### your code here!  name your classifier object clf if you want the 
+### your code here!  name your classifier object clf if you want the
 ### visualization code (prettyPicture) to show you the decision boundary
 
 
-from sklearn.ensemble import RandomForestClassifier
-clf = RandomForestClassifier(n_estimators=10)
+from sklearn.datasets import load_iris
+from sklearn.ensemble import AdaBoostClassifier
+iris = load_iris()
+clf = AdaBoostClassifier(n_estimators=100)
 clf.fit(features_train, labels_train)
-
-
-
 
 
 try:
     prettyPicture(clf, features_test, labels_test)
 except NameError:
     pass
-accuracy = clf.score(features_test, labels_test)
-print accuracy
+score = clf.score(features_test, labels_test)
+print score
 import os
 os.system('say "your program has finished"')
