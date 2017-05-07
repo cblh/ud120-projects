@@ -19,4 +19,22 @@ import pickle
 
 enron_data = pickle.load(open("../final_project/final_project_dataset.pkl", "r"))
 
+print len(enron_data)
+print enron_data['ALLEN PHILLIP K']['poi']
+print enron_data['ALLEN PHILLIP K']
+print len(enron_data['ALLEN PHILLIP K'])
 
+keys = enron_data.keys()
+print keys
+poi_data = filter(
+    lambda x:
+    enron_data[x]['poi'],
+    enron_data)
+
+print poi_data
+
+print 'len(poi_data)'
+print len(poi_data)
+import os
+
+os.system('say "your program has finished"')

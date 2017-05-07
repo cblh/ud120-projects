@@ -30,13 +30,18 @@ plt.show()
 
 ### your code here!  name your classifier object clf if you want the
 ### visualization code (prettyPicture) to show you the decision boundary
+from time import time
 
 
 from sklearn.datasets import load_iris
 from sklearn.ensemble import AdaBoostClassifier
 iris = load_iris()
 clf = AdaBoostClassifier(n_estimators=100)
+
+t0 = time()
+
 clf.fit(features_train, labels_train)
+print "training time:", round(time() - t0, 3), "s"
 
 
 try:
