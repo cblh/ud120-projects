@@ -60,12 +60,10 @@ print "What is the value of stock options exercised by Jeffrey K Skilling?(19250
 
 print "the most money"
 
-
 for name, data in enron_data.iteritems():
-    if 'lay' in name.lower() :
+    if 'lay' in name.lower():
         print name
         print data['exercised_stock_options']
-
 
 print 'a'
 for name, data in enron_data.iteritems():
@@ -75,9 +73,24 @@ for name, data in enron_data.iteritems():
 
 print 'a'
 for name, data in enron_data.iteritems():
-    if 'fastow' in name.lower() :
+    if 'fastow' in name.lower():
         print name
         print data['exercised_stock_options']
+
+import numpy as np
+
+total_payments_unavailable = 0
+total_payments_unavailable_poi = 0
+for name, data in enron_data.iteritems():
+    if np.isnan(float(data['total_payments'])):
+        total_payments_unavailable += 1
+print "NaN for total payment and percentage:", \
+    total_payments_unavailable, float(total_payments_unavailable)/len(enron_data)*100
+for name, data in enron_data.iteritems():
+    if np.isnan(float(data['total_payments'])) and data['poi']:
+        total_payments_unavailable_poi += 1
+print "NaN for total payment of POI and percentage:", \
+    total_payments_unavailable_poi, float(total_payments_unavailable_poi)/len(enron_data)*100
 # filter_poi_data = filter(
 #     lambda x:
 #     operator.indexOf(poi_emails, poi_data[x]['email_address']),
