@@ -64,19 +64,20 @@ for name, data in enron_data.iteritems():
     if 'lay' in name.lower():
         print name
         print data['exercised_stock_options']
+        print data['total_payments']
 
 print 'a'
 for name, data in enron_data.iteritems():
     if 'jeffrey' in name.lower() and 'skilling' in name.lower():
         print name
-        print data['exercised_stock_options']
+        print data['total_payments']
 
 print 'a'
 for name, data in enron_data.iteritems():
     if 'fastow' in name.lower():
         print name
         print data['exercised_stock_options']
-
+        print data['total_payments']
 import numpy as np
 
 total_payments_unavailable = 0
@@ -91,6 +92,25 @@ for name, data in enron_data.iteritems():
         total_payments_unavailable_poi += 1
 print "NaN for total payment of POI and percentage:", \
     total_payments_unavailable_poi, float(total_payments_unavailable_poi)/len(enron_data)*100
+
+
+# How is an unfilled feature denoted?
+print "How is an unfilled feature denoted?(11) ", \
+    enron_data['FASTOW ANDREW S']['deferral_payments']
+# How many folks in this dataset have a quantified salary?
+# What about a known email address?
+count_salary = 0
+count_email = 0
+for key in enron_data.keys():
+    if enron_data[key]['salary'] != 'NaN':
+        count_salary += 1
+    if enron_data[key]['email_address'] != 'NaN':
+        count_email += 1
+print "How many folks in this dataset have a quantified salary?(95) ", \
+    count_salary
+print "What about a known email address?(111) ", \
+    count_email
+
 # filter_poi_data = filter(
 #     lambda x:
 #     operator.indexOf(poi_emails, poi_data[x]['email_address']),
