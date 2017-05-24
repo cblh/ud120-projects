@@ -15,6 +15,14 @@ def outlierCleaner(predictions, ages, net_worths):
 
     ### your code goes here
 
-    
+    import operator
+
+    errors = [y1-y2 for y1, y2 in zip(predictions, net_worths)]
+    data = zip(ages, net_worths, errors)
+    data.sort(key=operator.itemgetter(2))
+    cleaned_data = data[:int(len(ages)*0.9)]
+
+
+
     return cleaned_data
 
