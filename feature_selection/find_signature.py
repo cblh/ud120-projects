@@ -1,5 +1,4 @@
 #!/usr/bin/python
-
 import pickle
 import numpy
 numpy.random.seed(42)
@@ -39,6 +38,22 @@ labels_train   = labels_train[:150]
 
 
 ### your code goes here
+words = vectorizer.get_feature_names()
+print len(labels_train)
+from sklearn.tree import DecisionTreeClassifier
+from sklearn.metrics import accuracy_score
 
+clf = DecisionTreeClassifier(min_samples_split=40)
+clf.fit(features_train, labels_train)
+pred = clf.predict(features_test)
+print "Accuracy:", accuracy_score(labels_test, pred)
 
+print "Important features:"
+for index, feature in enumerate(clf.feature_importances_):
+    if feature>0.2:
+        print "feature no", index
+        print "importance", feature
+        print "word", words[index]
 
+import os
+os.system('say "your program has finished"')
